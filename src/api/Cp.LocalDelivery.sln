@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cp.LocalDelivery.Lambda", "Cp.LocalDelivery.Lambda", "{F210871D-BC15-4B84-BEFB-23FCF67DC779}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cp.LocalDelivery.Core", "Cp.LocalDelivery.Core", "{2D60E820-44FD-4ED0-A0AE-A8B437921B6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cp.LocalDelivery.Domain", "Cp.LocalDelivery.Domain", "{80739B6A-B477-431C-89AA-249F39BFBF4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cp.LocalDelivery.Infrastructure", "Cp.LocalDelivery.Infrastructure", "{6270A964-0482-4BF0-AF1B-29DE76C71027}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cp.LocalDelivery.Core", "Cp.LocalDelivery.Core\Cp.LocalDelivery.Core.csproj", "{1A5F6A00-6C0D-4983-AC43-7ECAC1857D11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cp.LocalDelivery.Domain", "Cp.LocalDelivery.Domain\Cp.LocalDelivery.Domain.csproj", "{B2D6E8C6-DBAD-4C1D-92AB-C6FC9211A007}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cp.LocalDelivery.Infrastructure.Telemetry", "Cp.LocalDelivery.Infrastructure\Cp.LocalDelivery.Infrastructure.Telemetry\Cp.LocalDelivery.Infrastructure.Telemetry.csproj", "{6DF8BB29-C01D-4E77-AC6C-BB8F2A4E257F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cp.LocalDelivery.ProScriptConnect.SQSTriggerLambda", "Cp.LocalDelivery.Lambda\Cp.LocalDelivery.ProScriptConnect.SQSTriggerLambda\Cp.LocalDelivery.ProScriptConnect.SQSTriggerLambda.csproj", "{88BB5C62-1FF3-4DFB-AA4C-083EDA191977}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A5F6A00-6C0D-4983-AC43-7ECAC1857D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5F6A00-6C0D-4983-AC43-7ECAC1857D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5F6A00-6C0D-4983-AC43-7ECAC1857D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5F6A00-6C0D-4983-AC43-7ECAC1857D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D6E8C6-DBAD-4C1D-92AB-C6FC9211A007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D6E8C6-DBAD-4C1D-92AB-C6FC9211A007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D6E8C6-DBAD-4C1D-92AB-C6FC9211A007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D6E8C6-DBAD-4C1D-92AB-C6FC9211A007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF8BB29-C01D-4E77-AC6C-BB8F2A4E257F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF8BB29-C01D-4E77-AC6C-BB8F2A4E257F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF8BB29-C01D-4E77-AC6C-BB8F2A4E257F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF8BB29-C01D-4E77-AC6C-BB8F2A4E257F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88BB5C62-1FF3-4DFB-AA4C-083EDA191977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88BB5C62-1FF3-4DFB-AA4C-083EDA191977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88BB5C62-1FF3-4DFB-AA4C-083EDA191977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88BB5C62-1FF3-4DFB-AA4C-083EDA191977}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A5F6A00-6C0D-4983-AC43-7ECAC1857D11} = {2D60E820-44FD-4ED0-A0AE-A8B437921B6A}
+		{B2D6E8C6-DBAD-4C1D-92AB-C6FC9211A007} = {80739B6A-B477-431C-89AA-249F39BFBF4F}
+		{6DF8BB29-C01D-4E77-AC6C-BB8F2A4E257F} = {6270A964-0482-4BF0-AF1B-29DE76C71027}
+		{88BB5C62-1FF3-4DFB-AA4C-083EDA191977} = {F210871D-BC15-4B84-BEFB-23FCF67DC779}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {539AD7A7-744F-47EC-BEAA-A8D20DDBD5DD}
+	EndGlobalSection
+EndGlobal

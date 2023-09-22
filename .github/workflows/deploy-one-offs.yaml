@@ -1,0 +1,68 @@
+name: AWS Account Setup
+on:
+  workflow_dispatch:
+    inputs:
+      deployment-environment:
+        type: choice
+        required: true
+        description: 'Deployment Environment'
+        options:
+          - sandbox
+          - development
+          - integration
+          - staging
+          - production
+
+      environment:
+        type: choice
+        required: true
+        description: 'Environment Prefix'
+        options:
+          - sbx
+          - dev
+          - int
+          - stg
+          - prd
+
+      deploy-one-offs:
+        description: 'Deploy One Offs'
+        type: boolean
+        required: false
+        default: false
+jobs:
+  deploy:
+    name: AWS Account Setup
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.deployment-environment }}
+    env:
+      CI_GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+      AWS_REGION: eu-west-2
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      DEPLOYMENT_ROLE_ARN: ${{ secrets.DEPLOYMENT_ROLE_ARN }}
+      INSTANCE: ${{ github.event.inputs.environment }}
+      ENV: ${{ github.event.inputs.environment }}
+    permissions:
+      id-token: write
+      contents: read
+    if: github.event.inputs.deploy-one-offs == 'true'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: '${{ env.DEPLOYMENT_ROLE_ARN }}'
+          role-session-name: deploy-role-session
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Add Permission for execution of Terragrunt Script
+        run: chmod u+x ./scripts/install-terragrunt.sh
+
+      - name: Install Terragrunt
+        run: make install-terragrunt
+
+      - name: Deploy One Offs
+        if: github.event.inputs.deploy-one-offs == 'true'
+        run: make aws-deploy-one-offs

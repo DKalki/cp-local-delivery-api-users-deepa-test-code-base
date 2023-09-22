@@ -1,0 +1,18 @@
+tags:
+  - Message
+summary: Post the Message to the Local Delivery Integration Layer
+description: |
+  Post the Message to the Local Delivery Integration Layer from **Line10**
+
+operationId: postMessage
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../_indexV1.yaml#/components/schemas/MessageAttributes'
+
+responses:
+  200:
+    $ref: '../../components/responses/ok.yaml'

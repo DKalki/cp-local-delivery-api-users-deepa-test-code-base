@@ -1,0 +1,19 @@
+name: Pull Request
+on:
+  pull_request:
+jobs:
+  linting:
+    uses: ./.github/workflows/linting-validation-template.yaml
+    secrets:
+      CI_GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+
+  build-dotnet:
+    uses: ./.github/workflows/dotnet-validation-template.yaml
+    with:
+      CHANGE_ID: ${{ github.event.number }}
+      CHANGE_TARGET: ${{ github.base_ref }}
+      CHANGE_BRANCH: ${{ github.head_ref }}
+    secrets:
+      CI_GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+      CI_GITHUB_USER: ${{ secrets.CI_GITHUB_USER }}
+      CI_SONAR_TOKEN: ${{ secrets.CI_SONAR_TOKEN }}

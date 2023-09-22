@@ -1,0 +1,68 @@
+nupkg/
+
+# Node
+node_modules
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Log files
+Logs/
+
+# Build Publish
+PublishProfiles/
+
+# Visual Studio 2015
+.vs/
+.vscode/
+
+# Unit tests
+**/TestResults/*.trx
+**/coverage.opencover.xml
+.sonarqube
+[Bb]uild/tests/
+
+# Terraform
+**/.terraform
+**/*.plan
+terraform_plan.out
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+identityOpenApi.json
+deploy/aws/terraform/components/VPCandDB/.terraform
+deploy/aws/terraform/components/VPCandDB-dev/.terraform
+deploy/aws/terraform/components/.terraform
+deploy/aws/terraform/prerequisites/.terraform
+terraform-provider-aws_v3.61.0_x5
+provider.grunt.tf
+input_variables.grunt.tf
+default_tags.grunt.tf
+backend.tf
+*.tfstate
+# Exclude the remote_state resources state file
+# Required to allow future modifications - GitHub is effectively the backend for these resources
+!deploy/aws/terraform/remote-state/
+!deploy/aws/terraform/remote-state/terraform.tfstate
+!deploy/aws/terraform/remote-state/terraform.tfstate.backup
+!deploy/aws/terraform/remote-state/data.tf
+!deploy/aws/terraform/remote-state/provider.tf
+!deploy/aws/terraform/remote-state/terraform.tfstate.d/**/*.tfstate

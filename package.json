@@ -1,0 +1,22 @@
+{
+  "name": "cp-local-delivery-api",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "eclint": "^2.8.1",
+    "husky": "^8.0.3",
+    "markdownlint-cli": "^0.36.0",
+    "spellchecker-cli": "^6.1.1"
+  },
+  "requires": true,
+  "packages": {},
+  "scripts": {
+    "eclint-check": "eclint check",
+    "eclint-fix": "eclint fix",
+    "md-lint": "markdownlint **/*.md --ignore node_modules",
+    "md-spellcheck": "spellchecker --files **/*.md -d dictionary.txt --language en-GB",
+    "husky-prep": "husky install",
+    "pre-commit": "npm run eclint-check && npm run md-lint && npm run md-spellcheck"
+  }
+}

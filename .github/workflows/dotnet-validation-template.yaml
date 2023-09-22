@@ -1,0 +1,51 @@
+name: DotNet Validation
+on:
+  workflow_call:
+    inputs:
+      CHANGE_BRANCH:
+        required: true
+        type: string
+      CHANGE_ID:
+        required: false
+        type: string
+      CHANGE_TARGET:
+        required: false
+        type: string
+    secrets:
+      CI_GITHUB_TOKEN:
+        required: true
+      CI_GITHUB_USER:
+        required: true
+      CI_SONAR_TOKEN:
+        required: true
+
+jobs:
+  build-dotnet:
+    name: '.Net Code Validation'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+      GITHUB_USER: ${{ secrets.CI_GITHUB_USER }}
+      SONAR_TOKEN: ${{ secrets.CI_SONAR_TOKEN }}
+      CHANGE_ID: ${{ inputs.CHANGE_ID }}
+      CHANGE_TARGET: ${{ inputs.CHANGE_TARGET }}
+      CHANGE_BRANCH: ${{ inputs.CHANGE_BRANCH }}
+    steps:
+      - name: Set up
+        id: dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install
+        run: |
+          make dotnet-tool-restore
+          make dotnet-restore
+
+      - name: Build Project
+        run: make dotnet-build

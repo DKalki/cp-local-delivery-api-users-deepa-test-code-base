@@ -1,0 +1,126 @@
+MessageId:
+  type: string
+  example: 577727aa-52c2-11ee-be56-0242ac120002
+  description: 'Unique Message Id'
+
+MessageType:
+  type: string
+  example: notification
+  description: 'Indicate what is the type of message, can be notification or order'
+
+NacsCode:
+  type: string
+  example: FA391
+  description: 'To identify for which Pharmacy the message is for'
+
+MessageTimeStamp:
+  type: string
+  example: '2023-04-23T18:25:43.511Z'
+  description: 'To identify when the message is sent from the source, can be Line10'
+
+NotificationTimeStamp:
+  type: string
+  example: '2023-04-23T18:25:43.511Z'
+  description: 'To identify when the status is updated in the source system'
+
+CorelationId:
+  type: string
+  example: '577727aa-52c2-11ee-be56-0242ac120003'
+  description: 'Indicate for which ProScript Connect message the notification message is being sent for'
+
+TargetType:
+  type: string
+  example: 'proscript-connect'
+  description: 'To whom the message is intended for, can be proscirpt_connect or patient_access or line10'
+
+NotificationId:
+  type: string
+  example: 577727aa-52c2-11ee-be56-0242ac120003
+  description: 'Unique id of the Notification being sent'
+
+NotificationStatus:
+  type: string
+  example: 'delivered'
+  description: 'Status of the notification'
+
+PrescriptionUUID:
+  type: string
+  example: '577727aa-52c2-11ee-be56-0242ac120004'
+  description: 'Unique id of the Prescription that is to be delivered'
+
+Notes:
+  type: string
+  example: 'Delivered at door step'
+  description: 'Any notes along with the notification'
+
+Source:
+  type: string
+  example: line10
+  description: 'The source system from which the message received, can be proscript-connect, patient_access or line10'
+
+NotificationArray:
+  type: object
+  required:
+    - notifications
+  properties:
+    notification:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - status
+          - timeStamp
+          - prescriptionUuid
+        properties:
+          id:
+            $ref: '#/NotificationId'
+          status:
+            $ref: '#/NotificationStatus'
+          timeStamp:
+            $ref: '#/NotificationTimeStamp'
+          notes:
+            $ref: '#/Notes'
+          prescriptionUuid:
+            $ref: '#/PrescriptionUUID'
+
+MessageAttributes:
+  type: object
+  required:
+    - messageType
+    - nacsCode
+    - timeStamp
+    - target
+    - notifications
+  properties:
+    messageType:
+      $ref: '#/MessageType'
+    nacsCode:
+      $ref: '#/NacsCode'
+    timeStamp:
+      $ref: '#/MessageTimeStamp'
+    corelationId:
+      $ref: '#/CorelationId'
+    source:
+      $ref: '#/Source'
+    target:
+      type: array
+      items:
+        $ref: '#/TargetType'
+    notifications:
+      type: array
+      items:
+        type: object
+        required:
+          - status
+          - timeStamp
+          - prescriptionUuid
+        properties:
+          prescriptionUuid:
+            $ref: '#/PrescriptionUUID'
+          status:
+            $ref: '#/NotificationStatus'
+          timeStamp:
+            $ref: '#/NotificationTimeStamp'
+          notes:
+            $ref: '#/Notes'

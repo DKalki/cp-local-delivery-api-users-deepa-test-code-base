@@ -1,0 +1,44 @@
+name: Linting Validation
+on:
+  workflow_call:
+    secrets:
+      CI_GITHUB_TOKEN:
+        required: true
+jobs:
+  linting:
+    name: 'Linting'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+    steps:
+      - name: Set Up
+        id: node
+        uses: actions/setup-node@v3
+
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: clean
+        run: make clean
+
+      - name: install npm
+        run: make install-npm
+
+      - name: Spell check Markdown files
+        run: make spellcheck-markdown
+
+      - name: Lint Markdown files
+        run: make lint-markdown
+
+      - name: Check EditorConfig violations
+        run: 'make editorconfig-check'
+
+      - name: Run Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: deploy/aws/terraform
+          quiet: true
+          skip_check: CKV_GITHUB_*

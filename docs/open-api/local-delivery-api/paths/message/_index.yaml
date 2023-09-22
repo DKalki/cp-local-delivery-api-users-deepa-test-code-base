@@ -1,0 +1,9 @@
+options:
+  tags:
+    - CORS
+  security: []
+  responses:
+    200:
+      $ref: '../../components/responses/cors-response.yaml'
+post:
+  $ref: './post.yaml'

@@ -1,0 +1,6 @@
+audit-kinesis-stream-name   = "main-stg-trak-core-kst-audit"
+audit-kinesis-role-arn      = "arn:aws:iam::360308753867:role/main-stg-trak-core-rol-kst-v2-audit"
+logging-kinesis-stream-name = "main-stg-trak-core-kst-logging"
+logging-kinesis-role-arn    = "arn:aws:iam::360308753867:role/main-stg-trak-core-rol-kst-v2-logging"
+tracking-kinesis-secret-arn = "arn:aws:secretsmanager:eu-west-2:588554574523:secret:trackingkinesisstg-secret-rk0zGa"
+tracking-secret-kms-arn     = "arn:aws:kms:eu-west-2:588554574523:key/c28cb04a-d46d-4a80-b2b7-ef0932948b2c"

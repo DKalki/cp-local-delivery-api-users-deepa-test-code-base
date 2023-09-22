@@ -1,0 +1,34 @@
+{
+  "type": "api",
+  "purpose": "production",
+  "namespace": "px",
+  "moduleName": "ld",
+  "productionBranch": "main",
+  "accounts": [
+    {
+      "environment": "sbx",
+      "id": "638715662758",
+      "branch": ""
+    },
+    {
+      "environment": "dev",
+      "id": "552242588545",
+      "branch": "develop"
+    },
+    {
+      "environment": "int",
+      "id": "147444209586",
+      "branch": "main"
+    },
+    {
+      "environment": "stg",
+      "id": "386662288967",
+      "branch": "main"
+    },
+    {
+      "environment": "prd",
+      "id": "038071948389",
+      "branch": "main"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+name: Develop
+on:
+  push:
+    branches:
+      - 'develop'
+jobs:
+  linting:
+    uses: ./.github/workflows/linting-validation-template.yaml
+    secrets:
+      CI_GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+
+  build-dotnet:
+    uses: ./.github/workflows/dotnet-validation-template.yaml
+    with:
+      CHANGE_BRANCH: ${{ github.ref_name }}
+    secrets:
+      CI_GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+      CI_GITHUB_USER: ${{ secrets.CI_GITHUB_USER }}
+      CI_SONAR_TOKEN: ${{ secrets.CI_SONAR_TOKEN }}

@@ -1,0 +1,180 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Local Delivery Integration API
+  description: |
+    Contains the Local Delivery Integration Layer API
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Message
+    description: Message API
+  - name: CORS
+    description: 'Enable CORS by returning correct headers. For the most part, these calls can be ignored.'
+servers:
+  - url: 'https://ld.sbx.emishealth.com'
+    description: Sandbox Environment
+paths:
+  /message:
+    options:
+      tags:
+        - CORS
+      security: []
+      responses:
+        '200':
+          description: Default response for CORS method
+          headers:
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+    post:
+      tags:
+        - Message
+      summary: Post the Message to the Local Delivery Integration Layer
+      description: |
+        Post the Message to the Local Delivery Integration Layer from **Line10**
+      operationId: postMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - messageType
+                - nacsCode
+                - timeStamp
+                - target
+                - notifications
+              properties:
+                messageType:
+                  type: string
+                  example: notification
+                  description: 'Indicate what is the type of message, can be notification or order'
+                nacsCode:
+                  type: string
+                  example: FA391
+                  description: To identify for which Pharmacy the message is for
+                timeStamp:
+                  type: string
+                  example: '2023-04-23T18:25:43.511Z'
+                  description: 'To identify when the message is sent from the source, can be Line10'
+                corelationId:
+                  type: string
+                  example: 577727aa-52c2-11ee-be56-0242ac120003
+                  description: Indicate for which ProScript Connect message the notification message is being sent for
+                source:
+                  type: string
+                  example: line10
+                  description: 'The source system from which the message received, can be proscript-connect, patient_access or line10'
+                target:
+                  type: array
+                  items:
+                    type: string
+                    example: proscript-connect
+                    description: 'To whom the message is intended for, can be proscirpt_connect or patient_access or line10'
+                notifications:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - timeStamp
+                      - prescriptionUuid
+                    properties:
+                      prescriptionUuid:
+                        type: string
+                        example: 577727aa-52c2-11ee-be56-0242ac120004
+                        description: Unique id of the Prescription that is to be delivered
+                      status:
+                        type: string
+                        example: delivered
+                        description: Status of the notification
+                      timeStamp:
+                        type: string
+                        example: '2023-04-23T18:25:43.511Z'
+                        description: To identify when the status is updated in the source system
+                      notes:
+                        type: string
+                        example: Delivered at door step
+                        description: Any notes along with the notification
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Ok
+components:
+  schemas:
+    MessageAttributes:
+      type: object
+      required:
+        - messageType
+        - nacsCode
+        - timeStamp
+        - target
+        - notifications
+      properties:
+        messageType:
+          type: string
+          example: notification
+          description: 'Indicate what is the type of message, can be notification or order'
+        nacsCode:
+          type: string
+          example: FA391
+          description: To identify for which Pharmacy the message is for
+        timeStamp:
+          type: string
+          example: '2023-04-23T18:25:43.511Z'
+          description: 'To identify when the message is sent from the source, can be Line10'
+        corelationId:
+          type: string
+          example: 577727aa-52c2-11ee-be56-0242ac120003
+          description: Indicate for which ProScript Connect message the notification message is being sent for
+        source:
+          type: string
+          example: line10
+          description: 'The source system from which the message received, can be proscript-connect, patient_access or line10'
+        target:
+          type: array
+          items:
+            type: string
+            example: proscript-connect
+            description: 'To whom the message is intended for, can be proscirpt_connect or patient_access or line10'
+        notifications:
+          type: array
+          items:
+            type: object
+            required:
+              - status
+              - timeStamp
+              - prescriptionUuid
+            properties:
+              prescriptionUuid:
+                type: string
+                example: 577727aa-52c2-11ee-be56-0242ac120004
+                description: Unique id of the Prescription that is to be delivered
+              status:
+                type: string
+                example: delivered
+                description: Status of the notification
+              timeStamp:
+                type: string
+                example: '2023-04-23T18:25:43.511Z'
+                description: To identify when the status is updated in the source system
+              notes:
+                type: string
+                example: Delivered at door step
+                description: Any notes along with the notification

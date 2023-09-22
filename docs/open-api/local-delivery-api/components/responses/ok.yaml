@@ -1,0 +1,6 @@
+description: Success
+content:
+  text/plain:
+    schema:
+      type: string
+      example: 'Ok'

@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: Local Delivery Integration API
+  description: |
+    Contains the Local Delivery Integration Layer API
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Message
+    description: Message API
+  - name: CORS
+    description: Enable CORS by returning correct headers. For the most part, these calls can be ignored.
+
+servers:
+  - url: 'https://ld.sbx.emishealth.com'
+    description: Sandbox Environment
+
+paths:
+  /message:
+    $ref: './paths/message/_index.yaml'
+
+components:
+  schemas:
+    MessageAttributes:
+      $ref: './components/schemas/incoming-message.yaml#/MessageAttributes'
